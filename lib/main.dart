@@ -60,10 +60,13 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(20),
           child: Center(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Currency Converter",
-                  style: TextStyle(fontSize: 28),
+                Center(
+                  child: Text(
+                    "Currency Converter",
+                    style: TextStyle(fontSize: 28),
+                  ),
                 ),
                 Text(
                   "Check live rates, set rate alerts, receive notifications and more.",
@@ -170,6 +173,11 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: 20),
                 Text(
                   "Indicative Exchange Rate",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text(
+                  "1 ${inputCurrency.currencyCode} = $oneCost ${outputCurrency.currencyCode}",
+                  style: TextStyle(fontSize: 30),
                 ),
               ],
             ),
