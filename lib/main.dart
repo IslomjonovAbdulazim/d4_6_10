@@ -87,7 +87,8 @@ class _HomePageState extends State<HomePage> {
                               inputCurrency = value;
                               convert();
                             },
-                            items: currencies.map(
+                            items: currencies
+                                .map(
                                   (model) => DropdownMenuItem<CurrencyModel>(
                                     value: model,
                                     child: Row(
@@ -103,12 +104,72 @@ class _HomePageState extends State<HomePage> {
                                       ],
                                     ),
                                   ),
-                                ).toList(),
+                                )
+                                .toList(),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              controller: inputController,
+                              focusNode: focusNode,
+                              textAlign: TextAlign.end,
+                              style: TextStyle(fontSize: 20),
+                              onTapOutside: (val) {
+                                focusNode.unfocus();
+                                convert();
+                              },
+                              onSubmitted: (val) {
+                                convert();
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        children: [
+                          DropdownButton<CurrencyModel>(
+                            value: outputCurrency,
+                            onChanged: (value) {
+                              if (value == null) return;
+                              outputCurrency = value;
+                              convert();
+                            },
+                            items: currencies
+                                .map(
+                                  (model) => DropdownMenuItem<CurrencyModel>(
+                                    value: model,
+                                    child: Row(
+                                      children: [
+                                        CountryFlag.fromCountryCode(
+                                          model.countryCode,
+                                          shape: Circle(),
+                                        ),
+                                        Text(
+                                          model.currencyCode,
+                                          style: TextStyle(fontSize: 30),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                          Expanded(
+                            child: Text(
+                              result.toStringAsFixed(1),
+                              style: TextStyle(fontSize: 20),
+                              textAlign: TextAlign.end,
+                            ),
                           ),
                         ],
                       ),
                     ],
                   ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Indicative Exchange Rate",
                 ),
               ],
             ),
