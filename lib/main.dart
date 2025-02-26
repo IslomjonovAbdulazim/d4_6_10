@@ -2,6 +2,7 @@ import 'package:country_flags/country_flags.dart';
 import 'package:d4_6_10/currency_model.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:live_currency_rate/live_currency_rate.dart';
 
 void main() {
@@ -65,16 +66,24 @@ class _HomePageState extends State<HomePage> {
                 Center(
                   child: Text(
                     "Currency Converter",
-                    style: TextStyle(fontSize: 28),
+                    style: GoogleFonts.roboto(
+                      color: Color(0xff1F2261),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 28,
+                    ),
                   ),
                 ),
                 Text(
                   "Check live rates, set rate alerts, receive notifications and more.",
-                  style: TextStyle(fontSize: 18),
+                  style: GoogleFonts.roboto(
+                    color: Color(0xff808080),
+                    fontSize: 18,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 20),
                 Container(
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.white70,
                     borderRadius: BorderRadius.circular(30),
@@ -84,6 +93,7 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         children: [
                           DropdownButton<CurrencyModel>(
+                            underline: SizedBox.shrink(),
                             value: inputCurrency,
                             onChanged: (value) {
                               if (value == null) return;
@@ -100,9 +110,14 @@ class _HomePageState extends State<HomePage> {
                                           model.countryCode,
                                           shape: Circle(),
                                         ),
+                                        SizedBox(width: 8),
                                         Text(
                                           model.currencyCode,
-                                          style: TextStyle(fontSize: 30),
+                                          style: GoogleFonts.roboto(
+                                            color: Color(0xff26278D),
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -110,12 +125,18 @@ class _HomePageState extends State<HomePage> {
                                 )
                                 .toList(),
                           ),
+                          SizedBox(width: 10),
                           Expanded(
                             child: TextField(
+                              cursorColor: Colors.black,
                               controller: inputController,
                               focusNode: focusNode,
                               textAlign: TextAlign.end,
-                              style: TextStyle(fontSize: 20),
+                              style: GoogleFonts.roboto(
+                                fontSize: 18,
+                                color: Color(0xff3C3C3C),
+                                fontWeight: FontWeight.w600,
+                              ),
                               onTapOutside: (val) {
                                 focusNode.unfocus();
                                 convert();
@@ -124,6 +145,16 @@ class _HomePageState extends State<HomePage> {
                                 convert();
                               },
                               keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Color(0xffEFEFEF),
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -132,6 +163,7 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         children: [
                           DropdownButton<CurrencyModel>(
+                            underline: SizedBox.shrink(),
                             value: outputCurrency,
                             onChanged: (value) {
                               if (value == null) return;
@@ -148,9 +180,14 @@ class _HomePageState extends State<HomePage> {
                                           model.countryCode,
                                           shape: Circle(),
                                         ),
+                                        SizedBox(width: 8),
                                         Text(
                                           model.currencyCode,
-                                          style: TextStyle(fontSize: 30),
+                                          style: GoogleFonts.roboto(
+                                            color: Color(0xff26278D),
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -158,11 +195,23 @@ class _HomePageState extends State<HomePage> {
                                 )
                                 .toList(),
                           ),
+                          SizedBox(width: 10),
                           Expanded(
-                            child: Text(
-                              result.toStringAsFixed(1),
-                              style: TextStyle(fontSize: 20),
-                              textAlign: TextAlign.end,
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Color(0xffEFEFEF),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Text(
+                                result.toStringAsFixed(2),
+                                style: GoogleFonts.roboto(
+                                  fontSize: 18,
+                                  color: Color(0xff3C3C3C),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                textAlign: TextAlign.end,
+                              ),
                             ),
                           ),
                         ],
@@ -173,11 +222,18 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: 20),
                 Text(
                   "Indicative Exchange Rate",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.roboto(
+                    fontSize: 16,
+                    color: Color(0xff9B9B9B),
+                  ),
                 ),
                 Text(
                   "1 ${inputCurrency.currencyCode} = $oneCost ${outputCurrency.currencyCode}",
-                  style: TextStyle(fontSize: 30),
+                  style: GoogleFonts.roboto(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xff000000),
+                  ),
                 ),
               ],
             ),
